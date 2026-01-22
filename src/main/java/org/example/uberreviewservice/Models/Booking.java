@@ -15,12 +15,11 @@ import java.util.Date;
 @NoArgsConstructor
 public class Booking extends BaseModel{
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private Review review; // we have defined a 1:1 relationship between booking and review
 
     @Enumerated(value= EnumType.STRING)
     private BookingStatus bookingStatus;
-
 
     private LocalDateTime startTime;
 

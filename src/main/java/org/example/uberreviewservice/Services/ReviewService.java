@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReviewService implements CommandLineRunner{
@@ -34,7 +35,7 @@ public class ReviewService implements CommandLineRunner{
                 .review(r)
                 .build();
 
-        reviewRepository.save(r);   //this code executes sql query
+//        reviewRepository.save(r);   //this code executes sql query
         bookingRepository.save(b);
 
         List<Review> reviews= reviewRepository.findAll();
@@ -43,6 +44,12 @@ public class ReviewService implements CommandLineRunner{
             System.out.println(r.getContent());
         }
 
-        reviewRepository.deleteById(2L);
+//        reviewRepository.deleteById(2L);
+
+
+        Optional<Booking> b2=bookingRepository.findById(3L);
+        if(b2.isPresent()){
+            bookingRepository.delete(b2.get());
+        }
     }
 }
