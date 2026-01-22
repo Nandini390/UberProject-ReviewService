@@ -1,18 +1,23 @@
 package org.example.uberreviewservice.Services;
 
+import org.example.uberreviewservice.Models.Booking;
 import org.example.uberreviewservice.Models.Review;
+import org.example.uberreviewservice.Repositories.BookingRepository;
 import org.example.uberreviewservice.Repositories.ReviewRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
 public class ReviewService implements CommandLineRunner{
     private ReviewRepository reviewRepository;
+    private BookingRepository bookingRepository;
 
-    public ReviewService(ReviewRepository reviewRepository){
+    public ReviewService(ReviewRepository reviewRepository, BookingRepository bookingRepository){
         this.reviewRepository=reviewRepository;
+        this.bookingRepository=bookingRepository;
     }
 
     @Override
@@ -23,8 +28,14 @@ public class ReviewService implements CommandLineRunner{
                 .rating(5.0)
                 .build();  // code to create plain java object
 
-        System.out.println(r);
+        Booking b= Booking
+                .builder()
+                .endTime(LocalDateTime.now())
+                .review(r)
+                .build();
+
         reviewRepository.save(r);   //this code executes sql query
+        bookingRepository.save(b);
 
         List<Review> reviews= reviewRepository.findAll();
 
