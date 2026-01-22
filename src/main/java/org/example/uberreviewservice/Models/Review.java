@@ -5,14 +5,14 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name="BookingReview")
+@Table(name="Booking_Review")
 @Getter
 @Setter
 @Builder // for object creation, it needs below 2 constructor
 @AllArgsConstructor
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name="review_type", discriminatorType = DiscriminatorType.INTEGER)
+//@DiscriminatorColumn(name="review_type", discriminatorType = DiscriminatorType.INTEGER)
 public class Review extends BaseModel{
 
     @Column(nullable = false)
