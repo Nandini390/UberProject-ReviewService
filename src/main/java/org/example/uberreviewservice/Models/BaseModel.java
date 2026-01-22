@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 //we made this class as abstract b/c this is just a base class and we don't want anyone to make object of it.
 public class BaseModel {
     @Id  //this annotation makes the id property a primary key of our table
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     protected Long id;
 
     @CreatedDate

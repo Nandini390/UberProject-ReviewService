@@ -11,7 +11,7 @@ import lombok.*;
 @Builder // for object creation, it needs below 2 constructor
 @AllArgsConstructor
 @NoArgsConstructor
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @DiscriminatorColumn(name="review_type", discriminatorType = DiscriminatorType.INTEGER)
 public class Review extends BaseModel{
 
