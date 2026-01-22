@@ -26,4 +26,7 @@ public class Booking extends BaseModel{
     private LocalDateTime endTime;
 
     private Long totalDistance;
+
+    @ManyToOne
+    private Driver driver;
 }
