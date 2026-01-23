@@ -51,21 +51,59 @@ public class ReviewService implements CommandLineRunner{
 ////        reviewRepository.deleteById(2L);
 //
 //
-//        Optional<Booking> b2=bookingRepository.findById(3L);
-//        if(b2.isPresent()){
-//            bookingRepository.delete(b2.get());
+ //        Optional<Booking> b2= bookingRepository.findById(3l);                                                /*1. */
+ //        if(b2.isPresent()){                                                   /*1. */
+ //            bookingRepository.delete(b2.get());                               /*1. */
+//        }                                                                      /*1.*/
+
+
+
+
+//        Optional<Driver> driver= driverRepository.findByIdAndLicenseNumber(1l, "DL1212");        /*2*/
+//        if(driver.isPresent()){                                                                                   /*2*/
+//            System.out.println(driver.get().getName());                                                           /*2*/
+//            List<Booking> bookings= bookingRepository.findAllByDriverId(1l);                                      /*2*/
+//            for(Booking booking: bookings){                                                                       /*2*/
+//                System.out.println(booking.getBookingStatus());                                                   /*2*/
+//            }
 //        }
 
-         Optional<Driver> driver= driverRepository.findById(1l);
-         if(driver.isPresent()){
-             System.out.println(driver.get().getName());
-//             List<Booking> bookings= bookingRepository.findAllByDriverId(1l);
-//             for(Booking booking: bookings){
-//                 System.out.println(booking.getBookingStatus());
-//             }
-         }
 
-         Optional<Booking> bookins=bookingRepository.findById(1l);
-         //in this query lot of joins are going on, all which are OneToOne and ManyToOne mapped,driver, booking_review,passenger, passengerReview
+
+
+//        Optional<Driver> driver= driverRepository.findById(1l);                      /*3*/
+//        if(driver.isPresent()){                                                      /*3*/
+//            System.out.println(driver.get().getName());                             /*3*/
+//            List<Booking> bookings= bookingRepository.findAllByDriverId(1l);         /*3*/
+//             for(Booking booking: bookings){                                         /*3*/
+//                 System.out.println(booking.getBookingStatus());                     /*3*/
+//             }                                                                       /*3*/
+//        }                                                                            /*3*/
+//    }                                                                                /*3*/
+//
+//    Optional<Booking> bookins=bookingRepository.findById(1l);                        /*3*/
+//    //in this query lot of joins are going on, all which are OneToOne and ManyToOne mapped,driver, booking_review,passenger, passengerReview
+
+
+
+
+
+
+//         Optional<Driver> driver= driverRepository.findById(1l);                /*4*/
+//         if(driver.isPresent()){                                                /*4*/
+//             System.out.println(driver.get().getName());                        /*4*/
+//             List<Booking> b= driver.get().getBookings();                       /*4*/
+//             for(Booking booking: b){                                           /*4*/
+//                 System.out.println(booking.getId());                           /*4*/
+//             }                                                                  /*4*/
+//         }
+
+
+
+        Optional<Driver> d=driverRepository.rawFindByIdAndLicenseNumber(1l, "DL1212");
+        System.out.println(d.get().getName());
+
+        Optional<Driver> d2= driverRepository.hqlFindByIdAndLicense(1l,"DL1212");
+        System.out.println(d2.get().getName());
     }
 }
