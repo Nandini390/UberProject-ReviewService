@@ -56,13 +56,16 @@ public class ReviewService implements CommandLineRunner{
 //            bookingRepository.delete(b2.get());
 //        }
 
-         Optional<Driver> driver= driverRepository.findByIdAndLicenseNumber(1l, "DL1212");
+         Optional<Driver> driver= driverRepository.findById(1l);
          if(driver.isPresent()){
              System.out.println(driver.get().getName());
-             List<Booking> bookings= bookingRepository.findAllByDriverId(1l);
-             for(Booking booking: bookings){
-                 System.out.println(booking.getBookingStatus());
-             }
+//             List<Booking> bookings= bookingRepository.findAllByDriverId(1l);
+//             for(Booking booking: bookings){
+//                 System.out.println(booking.getBookingStatus());
+//             }
          }
+
+         Optional<Booking> bookins=bookingRepository.findById(1l);
+         //in this query lot of joins are going on, all which are OneToOne and ManyToOne mapped,driver, booking_review,passenger, passengerReview
     }
 }
