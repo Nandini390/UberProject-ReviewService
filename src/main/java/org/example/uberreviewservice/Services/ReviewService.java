@@ -1,16 +1,15 @@
 package org.example.uberreviewservice.Services;
 
 import org.example.uberreviewservice.Models.Booking;
-import org.example.uberreviewservice.Models.CustomDriver;
 import org.example.uberreviewservice.Models.Driver;
-import org.example.uberreviewservice.Models.Review;
 import org.example.uberreviewservice.Repositories.BookingRepository;
 import org.example.uberreviewservice.Repositories.DriverRepository;
 import org.example.uberreviewservice.Repositories.ReviewRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -101,10 +100,18 @@ public class ReviewService implements CommandLineRunner{
 
 
 
-        Optional<Driver> d=driverRepository.rawFindByIdAndLicenseNumber(1l, "DL1212");
-        System.out.println(d.get().getName());
+//        Optional<Driver> d=driverRepository.rawFindByIdAndLicenseNumber(1l, "DL1212");   /*5*/
+//        System.out.println(d.get().getName());                                                      /*5*/
+//
+//        Optional<Driver> d2= driverRepository.hqlFindByIdAndLicense(1l,"DL1212");        /*5*/
+//        System.out.println(d2.get().getName());                                                     /*5*/
 
-        Optional<CustomDriver> d2= driverRepository.hqlFindByIdAndLicense(1l,"DL1212");
-        System.out.println(d2.get().getName());
+
+        List<Long> driver_ids=new ArrayList<>(Arrays.asList(1L, 2L));
+        List<Driver> drivers= driverRepository.findAllByIdIn(driver_ids);
+        for(Driver driver:drivers){
+            List<Booking> bookings=driver.getBookings();
+            bookings.forEach(booking -> System.out.println(booking.getId()));
+        }
     }
 }
