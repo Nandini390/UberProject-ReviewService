@@ -37,6 +37,7 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     implementation("org.springframework.data:spring-data-jpa:4.0.1")
+    implementation 'org.flywaydb:flyway-core:9.21.1'
 }
 
 tasks.named('test') {
